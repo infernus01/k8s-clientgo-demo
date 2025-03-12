@@ -1,6 +1,6 @@
 # k8s-clientgo-demo
 
-A simple Kubernetes client-go example to create a pod.
+A simple example that shows how to use client-go to interact with a Kubernetes cluster by creating a Deployment and a Service.
 
 ## Usage
 
@@ -10,4 +10,6 @@ A simple Kubernetes client-go example to create a pod.
 
 2. Verify that the pod is created:
    ```sh
+   kubeectl get deployment
    kubectl get pods
+   kubectl get service
