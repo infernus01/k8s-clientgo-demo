@@ -15,6 +15,7 @@ import (
 )
 
 func main() {
+	// This will load kubeconfig
 	var kubeconfig string
 	if home := homedir.HomeDir(); home != "" {
 		kubeconfig = filepath.Join(home, ".kube", "config")
@@ -28,13 +29,13 @@ func main() {
 		log.Fatalf("Error loading kubeconfig: %v", err)
 	}
 
-	
+	// This creates k8s client
 	clientset, err := kubernetes.NewForConfig(config)
 	if err != nil {
 		log.Fatalf("Error creating Kubernetes client: %v", err)
 	}
 
-
+	// Pod Definition
 	pod := &v1.Pod{
 		ObjectMeta: metav1.ObjectMeta{
 			Name:      "shubham-pod-go",
@@ -55,7 +56,7 @@ func main() {
 		},
 	}
 
-	
+	// Pod Creation
 	createdPod, err := clientset.CoreV1().Pods("default").Create(context.TODO(), pod, metav1.CreateOptions{})
 	if err != nil {
 		log.Fatalf("Error creating pod: %v", err)
